@@ -1,44 +1,37 @@
 import React from 'react';
-import {Image, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 
 import {styles} from './styles';
 
-import {WeatherDay} from '@weather/general';
+import {localize, WeatherDay} from '@weather/general';
+import {State, useAppSelector} from '@weather/states';
 
 type Props = {
 	item: WeatherDay
 }
 
-export const Day = ({item}: Props): React.ReactElement => {
-	console.log('first');
+export const Day: React.FC<Props> = ({item}): React.ReactElement => {
+	const {colors} = useAppSelector(State.selectors.selectTheme);
 
 	return (
 		<View style={styles.root}>
-			<Text style={styles.title}>
-				{item.date}
-			</Text>
-
-			<View>
-				<Text>
-					{item.day.condition.text}
-				</Text>
-				<Image
-					source={{uri: item.day.condition.icon}}
-					style={styles.image}
-				/>
-			</View>
-
-			<Text>
-				{item.day.daily_chance_of_rain}
+			<Text style={[styles.title, {backgroundColor: `${colors.card}80`}]}>
+				{localize('date', {itemDate: item.date})}
 			</Text>
 			<Text>
-				{item.day.maxtemp_c}
+				{localize('condition', {condition: item.day.condition.text})}
 			</Text>
 			<Text>
-				{item.day.mintemp_c}
+				{localize('chance_of_rain', {chance: item.day.daily_chance_of_rain})}
 			</Text>
 			<Text>
-				{item.day.maxwind_kph}
+				{localize('max_temp', {temp: item.day.maxtemp_c})}
+			</Text>
+			<Text>
+				{localize('min_temp', {temp: item.day.mintemp_c})}
+			</Text>
+			<Text>
+				{localize('max_wind', {wind: item.day.maxwind_kph})}
 			</Text>
 		</View>
 	);

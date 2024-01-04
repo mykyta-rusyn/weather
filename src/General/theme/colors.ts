@@ -1,17 +1,22 @@
 const bgColors = {
-	transparent: 'transparent',
-	lightGreen: 'lightgreen'
+	bgThemeSwitchDark: '#FAD02C',
+	bgThemeSwitchLight: '#333652',
 };
 
-const textColors = {};
+const textColors = {
+	textGray: '#333333',
+	textWhite: '#FFFFFF'
+};
 
-const borderColors = {};
+const borderColors = {
+};
 
-const shadowColors = {};
+const shadowColors = {
+};
 
 export const colors = {
-	...bgColors,
-	...textColors,
-	...borderColors,
-	...shadowColors,
+	bg: bgColors,
+	text: textColors,
+	border: borderColors,
+	shadow: shadowColors,
 };

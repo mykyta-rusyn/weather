@@ -13,10 +13,11 @@ function createQParameter(position: LocationObject): string {
 
 export async function getWeather(
 	position: LocationObject,
-	days = 1
+	days = 1,
+	language: string
 ): Promise<WeatherDTO | undefined> {
 	const response = await fetch(
-		`${baseUrl}/forecast.json?${apiKey}&${createQParameter(position)}&days=${days}&aqi=no&alerts=no`,
+		`${baseUrl}/forecast.json?${apiKey}&${createQParameter(position)}&days=${days}&lang=${language}`,
 		{method: 'GET'}
 	);
 

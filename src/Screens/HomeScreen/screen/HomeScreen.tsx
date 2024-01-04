@@ -1,32 +1,33 @@
 import React from 'react';
-import {ActivityIndicator, FlatList, View} from 'react-native';
+import {ActivityIndicator, ScrollView, View} from 'react-native';
 
 import {Day, periods, PeriodsView} from '../components';
 
 import {Props} from './HomeScreenParams';
 import {styles} from './styles';
 
-import {fetchPosition, getWeather, localize, WeatherDTO} from '@weather/general';
+import {fetchPosition, getWeather, localize, useLocal, WeatherDTO} from '@weather/general';
 
 export const HomeScreen: React.FC<Props> = ({navigation}) => {
 	const [period, setPeriod] = React.useState(0);
 	const [weather, setWeather] = React.useState<WeatherDTO>();
 	const [loading, setIsLoading] = React.useState(true);
-	
+	const {currentLang} = useLocal();
+
 	React.useEffect(() => {
 		setIsLoading(true);
 		navigation.setOptions({
-			title: localize(`home_title_${periods[period]}`)
+			title: localize(`home_title_${periods.arrayLiteral[period]}`),
 		});
 
 		fetchPosition((position) => 
-			getWeather(position)
+			getWeather(position, periods.arrayNumber[period], currentLang)
 				.then(setWeather)
 				.then(() => {
 					setIsLoading(false);
 				})
 		);
-	}, [navigation, period]);
+	}, [currentLang, navigation, period]);
 
 	return (
 		<View style={styles.root}>
@@ -38,10 +39,12 @@ export const HomeScreen: React.FC<Props> = ({navigation}) => {
 				<ActivityIndicator size={'large'} />
 			) : null}
 			{weather ? (
-				<FlatList
+				<ScrollView
+					children={weather.forecast.forecastday.map((item) => (
+						<Day item={item} key={item.date} />
+					))}
 					contentContainerStyle={styles.rootInner}
-					data={weather.forecast.forecastday}
-					renderItem={Day}
+					showsVerticalScrollIndicator={false}
 				/>
 			) : null}
 		</View>

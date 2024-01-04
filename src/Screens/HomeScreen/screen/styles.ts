@@ -5,9 +5,14 @@ export const styles = StyleSheet.create({
 		flex: 1,
 		paddingVertical: 16,
 		paddingHorizontal: 8,
+		paddingBottom: 4,
 		gap: 8,
 	},
 	rootInner: {
-		padding: 16
+		alignItems: 'stretch',
+		justifyContent: 'flex-start',
+		gap: 16,
+		padding: 16,
+		paddingVertical: 0,
 	}
 });

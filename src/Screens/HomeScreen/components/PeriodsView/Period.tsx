@@ -5,6 +5,7 @@ import {periods} from './shared';
 import {selectedPeriod, styles} from './styles';
 
 import {capitalizeFirst, localize} from '@weather/general';
+import {State, useAppSelector} from '@weather/states';
 
 type Props = {
 	index: number;
@@ -13,14 +14,19 @@ type Props = {
 }
 
 export const Period: React.FC<Props> = (props) => {
+	const {colors} = useAppSelector(State.selectors.selectTheme);
+
 	return (
 		<Pressable
 			disabled={props.isSelected}
-			style={props.isSelected ? selectedPeriod : styles.period}
+			style={[
+				props.isSelected ? selectedPeriod : styles.period,
+				{backgroundColor: colors.card}
+			]}
 			onPress={props.onPress}
 		>
 			<Text>
-				{capitalizeFirst(localize(`periods_${periods[props.index]}`))}
+				{capitalizeFirst(localize(`periods_${periods.arrayLiteral[props.index]}`))}
 			</Text>
 		</Pressable>
 	);

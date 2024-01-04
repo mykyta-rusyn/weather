@@ -1,0 +1,24 @@
+{
+	"weather": "Погода на",
+	"periods_one": "сьогодні",
+	"periods_tree": "3 дні",
+	"periods_week": "тиждень",
+	"periods_twoWeek": "2 тижні",
+	"home_title_one": "$t(weather) $t(periods_one)",
+	"home_title_tree": "$t(weather) $t(periods_tree)",
+	"home_title_week": "$t(weather) a $t(periods_week)",
+	"home_title_twoWeek": "$t(weather) $t(periods_twoWeek)",
+
+	
+  "location_disabled_title": "Геолокація вимкнена",
+	"location_disabled_description": "Додатку необхідно отримувати вашу локацію",
+  "location_disabled_description_true": "$t(location_disabled_description). Використана попередня локація",
+  "location_disabled_description_false": "$t(location_disabled_description). Увімкніть геолокацію та спробуйте ще раз",
+
+	"date": "Дата: {{itemDate}}",
+	"condition": "Погодні умови: {{condition}}",
+	"chance_of_rain": "Шанс дождю {{chance}}%",
+	"max_temp": "Максимальна температура: {{temp}}°",
+	"min_temp": "Мінімальна температура: {{temp}}°",
+	"max_wind": "максимальна швидкість вітру: {{wind}}км/c"
+}

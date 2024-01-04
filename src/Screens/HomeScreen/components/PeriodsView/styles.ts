@@ -1,7 +1,5 @@
 import {StyleSheet} from 'react-native';
 
-import {Theme} from '@weather/general';
-
 export const styles = StyleSheet.create({
 	root: {
 		gap: 16,
@@ -11,7 +9,6 @@ export const styles = StyleSheet.create({
 	period: {
 		padding: 8,
 		borderRadius: 15,
-		backgroundColor: Theme.colors.lightGreen
 	},
 	selectedPeriod: {
 		opacity: 0.6

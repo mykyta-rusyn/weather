@@ -16,7 +16,7 @@ export const PeriodsView: React.FC<Props> = (props) => {
 			<FlatList
 				horizontal
 				contentContainerStyle={styles.root}
-				data={periods}
+				data={periods.arrayLiteral}
 				renderItem={({index}) => (
 					<Period
 						index={index}

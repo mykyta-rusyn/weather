@@ -13,5 +13,12 @@
   "location_disabled_title": "Location disabled",
 	"location_disabled_description": "This app is needed in fetching your location",
   "location_disabled_description_true": "$t(location_disabled_description). Used previous location",
-  "location_disabled_description_false": "$t(location_disabled_description). Enable geolocation and try again"
+  "location_disabled_description_false": "$t(location_disabled_description). Enable geolocation and try again",
+
+	"date": "Date: {{itemDate}}",
+	"condition": "Condition: {{condition}}",
+	"chance_of_rain": "Chance of rain is {{chance}}%",
+	"max_temp": "Max temp is: {{temp}}°",
+	"min_temp": "Min temp is: {{temp}}°",
+	"max_wind": "Max wind speed is: {{wind}}kph"
 }

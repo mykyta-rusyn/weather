@@ -1,9 +1,13 @@
+import {Theme} from '@react-navigation/native';
+
 import {Payload} from '@weather/general';
 
 export type State = {
-  isLoggedIn: boolean
+  theme: Theme
 };
 
 export type Type = {
-  setIsLogged: (state: State, action: Payload<State>) => void
+  setTheme: (state: State, action: Payload<Theme | null>) => void;
+  toggleTheme: (state: State) => void
 };
+
