@@ -1,0 +1,17 @@
+﻿{
+	"weather": "Weather for",
+	"periods_one": "today",
+	"periods_tree": "3 days",
+	"periods_week": "week",
+	"periods_twoWeek": "2 weeks",
+	"home_title_one": "$t(weather) $t(periods_one)",
+	"home_title_tree": "$t(weather) $t(periods_tree)",
+	"home_title_week": "$t(weather) a $t(periods_week)",
+	"home_title_twoWeek": "$t(weather) $t(periods_twoWeek)",
+
+	
+  "location_disabled_title": "Location disabled",
+	"location_disabled_description": "This app is needed in fetching your location",
+  "location_disabled_description_true": "$t(location_disabled_description). Used previous location",
+  "location_disabled_description_false": "$t(location_disabled_description). Enable geolocation and try again"
+}

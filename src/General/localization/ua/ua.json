@@ -1,0 +1,7 @@
+{
+	"weather": "Погода на",
+	"home_title_one": "$t(weather) сьогодні",
+	"home_title_tree": "$t(weather) 3 дні",
+	"home_title_week": "$t(weather) тиждень",
+	"home_title_twoWeek": "$t(weather) на 2 тижні"
+}
