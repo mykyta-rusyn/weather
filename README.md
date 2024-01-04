@@ -6,3 +6,9 @@ Initial commit:
 - Location fetching (alerts, caching prev location)
 
 In progress: theme switching, different list rendering, move state to redux
+
+Final commit:
+2 hours.
+- Theme switching
+- Render 1, 3, 7, 14 elements
+- Translation and language switching
