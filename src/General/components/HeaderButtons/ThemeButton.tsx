@@ -5,14 +5,14 @@ import {useTheme} from '../../theme';
 
 import {styles} from './sharedStyles';
 
-import {State, useAppDispatch} from '@weather/states';
+import {globalState, useAppDispatch} from '@weather/states';
 
 export const ThemeButton: React.FC = () => {
 	const {colors, isDark} = useTheme();
 	const dispatch = useAppDispatch();
 
 	const toggleTheme = React.useCallback(() => {
-		dispatch(State.actions.toggleTheme());
+		dispatch(globalState.actions.toggleTheme());
 	}, [dispatch]);
 
 	return (

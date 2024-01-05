@@ -27,6 +27,7 @@
       "favicon": "./assets/favicon.png"
     },
     "extra": {
+      "baseWeatherUrl": "http://api.weatherapi.com/v1/",
       "wetherApiKey": "454318f660fe4f18836152529240401"
     }
   }

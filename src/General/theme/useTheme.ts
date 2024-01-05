@@ -2,7 +2,7 @@ import {ThemeType} from '../domain';
 
 import {colors, ThemeColors} from './colors';
 
-import {State, useAppDispatch, useAppSelector} from '@weather/states';
+import {globalState, useAppDispatch, useAppSelector} from '@weather/states';
 
 type Theme = {
 	colors: ThemeColors;
@@ -12,13 +12,13 @@ type Theme = {
 }
 
 export function useTheme(): Theme {
-	const theme = useAppSelector(State.selectors.theme);
+	const theme = useAppSelector(globalState.selectors.theme);
 	const dispatch = useAppDispatch();
 
 	return {
 		colors: colors[theme],
 		isDark: theme === 'dark',
-		setTheme: (theme: ThemeType) => dispatch(State.actions.setTheme(theme)),
-		toggleTheme: () => dispatch(State.actions.toggleTheme())
+		setTheme: (theme: ThemeType) => dispatch(globalState.actions.setTheme(theme)),
+		toggleTheme: () => dispatch(globalState.actions.toggleTheme())
 	};
 }

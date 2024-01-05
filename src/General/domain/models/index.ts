@@ -1,3 +1,3 @@
 export * from './Payload';
 export * from './Theme';
-export * from './WeatherDay';
+export * from './Weather';

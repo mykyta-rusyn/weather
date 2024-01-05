@@ -1,29 +1,80 @@
-import {WeatherDTO} from '../domain';
-
 import Constants from 'expo-constants';
-import {LocationObject} from 'expo-location';
 
-const baseUrl = 'http://api.weatherapi.com/v1';
+type URL = string;
+type Method = 'GET' | 'POST' | 'PUT' | 'DELETE';
+type Headers = {[key: string]: string;};
 
-const apiKey = `key=${Constants.expoConfig!.extra!.wetherApiKey}`;
+export class ApiRequest {
+	static readonly key = `key=${Constants.expoConfig!.extra!.wetherApiKey}`;
+	
+	private readonly _method: Method;
+	private readonly _url: URL;
+	private _body?: string;
+	private _headers: Headers = {};
+	private _signal?: AbortSignal;
+	private _queryParams: string[] = [];
 
-function createQParameter(position: LocationObject): string {
-	return `q=${position.coords.latitude},${position.coords.longitude}`;
-}
-
-export async function getWeather(
-	position: LocationObject,
-	days = 1,
-	language: string
-): Promise<WeatherDTO | undefined> {
-	const response = await fetch(
-		`${baseUrl}/forecast.json?${apiKey}&${createQParameter(position)}&days=${days}&lang=${language}`,
-		{method: 'GET'}
-	);
-
-	if (!response.ok) {
-		return undefined;
+	constructor(url: URL, method: Method) {
+		this._method = method;
+		this._url = Constants.expoConfig!.extra!.baseWeatherUrl + url;
 	}
 
-	return await response.json();
+	addHeader(key: string, value: string): ApiRequest {
+		this._headers[key] = value;
+
+		return this;
+	}
+
+	addQuery(key: string, value: string): ApiRequest {
+		this._queryParams.push(`${key}=${value}`);
+
+		return this;
+	}
+
+	addSignal(signal: AbortSignal): ApiRequest {
+		this._signal = signal;
+
+		return this;
+	}
+
+	setSecured(): ApiRequest {
+		this._queryParams.push(ApiRequest.key);
+
+		return this;
+	}
+
+	withBody(body: unknown): ApiRequest {
+		this._body = JSON.stringify(body);
+
+		return this;
+	}
+
+	execute(): Promise<Response> {
+		return fetch(this._createUrl(), {
+			body: this._body,
+			headers: this._headers,
+			method: this._method,
+			signal: this._signal,
+		});
+	}
+
+	async executeAsJson<T>(): Promise<T | undefined> {
+		return this.execute().then((res) => {
+			if (!res.ok) {
+				console.debug('[API ERR]', this._url, this._queryParams, this._body, this._method, res.status, res.statusText);
+
+				return undefined;
+			}
+
+			return res.json();
+		});
+	}
+
+	private _createUrl(): string {
+		if (this._queryParams.length) {
+			return this._url + '?' + this._queryParams.join('&');
+		}
+
+		return this._url;
+	}
 }
