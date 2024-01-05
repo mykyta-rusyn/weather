@@ -2,21 +2,18 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {useAppSelector} from '../General/States/reduxHooks';
-
 import {NavParams} from './types';
 
-import {HeaderButtons} from '@weather/general';
+import {HeaderButtons, useTheme} from '@weather/general';
 import {HomeScreen} from '@weather/screens';
-import {State} from '@weather/states';
 
 const Stack = createStackNavigator<NavParams>();
 
 export const Navigator: React.FC = () => {
-	const theme = useAppSelector(State.selectors.selectTheme);
+	const {colors} = useTheme();
 
 	return (
-		<NavigationContainer theme={theme}>
+		<NavigationContainer>
 			<Stack.Navigator>
 				<Stack.Screen
 					component={HomeScreen}
@@ -24,7 +21,13 @@ export const Navigator: React.FC = () => {
 					options={{
 						headerRight: HeaderButtons,
 						headerTitleStyle: {
-							color: theme.colors.text
+							color: colors.textGray
+						},
+						headerStyle: {
+							backgroundColor: colors.bgGreen
+						},
+						cardStyle: {
+							backgroundColor: colors.bgLight
 						}
 					}}
 				/>

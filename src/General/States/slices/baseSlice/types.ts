@@ -1,13 +1,11 @@
-import {Theme} from '@react-navigation/native';
-
-import {Payload} from '@weather/general';
+import {Payload, ThemeType} from '@weather/general';
 
 export type State = {
-  theme: Theme
+  theme: ThemeType
 };
 
 export type Type = {
-  setTheme: (state: State, action: Payload<Theme | null>) => void;
+  setTheme: (state: State, action: Payload<ThemeType>) => void;
   toggleTheme: (state: State) => void
 };
 

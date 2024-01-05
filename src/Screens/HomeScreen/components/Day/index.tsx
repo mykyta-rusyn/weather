@@ -3,19 +3,18 @@ import {Text, View} from 'react-native';
 
 import {styles} from './styles';
 
-import {localize, WeatherDay} from '@weather/general';
-import {State, useAppSelector} from '@weather/states';
+import {localize, useTheme, WeatherDay} from '@weather/general';
 
 type Props = {
 	item: WeatherDay
 }
 
 export const Day: React.FC<Props> = ({item}): React.ReactElement => {
-	const {colors} = useAppSelector(State.selectors.selectTheme);
+	const {colors} = useTheme();
 
 	return (
 		<View style={styles.root}>
-			<Text style={[styles.title, {backgroundColor: `${colors.card}80`}]}>
+			<Text style={[styles.title, {backgroundColor: `${colors.bgGreen}80`}]}>
 				{localize('date', {itemDate: item.date})}
 			</Text>
 			<Text>

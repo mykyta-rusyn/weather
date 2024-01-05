@@ -1,22 +1,26 @@
-const bgColors = {
-	bgThemeSwitchDark: '#FAD02C',
-	bgThemeSwitchLight: '#333652',
-};
+import {ThemeType} from '../domain';
 
-const textColors = {
-	textGray: '#333333',
-	textWhite: '#FFFFFF'
-};
+export type ThemeColors = {
+	bgGreen: string;
+	bgLight: string;
+	themeSwitch: string;
+	textGray: string;
+	textPrimary: string
+}
 
-const borderColors = {
-};
-
-const shadowColors = {
-};
-
-export const colors = {
-	bg: bgColors,
-	text: textColors,
-	border: borderColors,
-	shadow: shadowColors,
+export const colors: Record<ThemeType, ThemeColors> = {
+	dark: {
+		bgGreen: '#3F51B5',
+		bgLight: '#3F51B550',
+		textGray: '#333333',
+		textPrimary: '#FFFFFF',
+		themeSwitch: '#FAD02C'
+	},
+	light: {
+		bgGreen: '#03AC13',
+		bgLight: '#F5F5F5',
+		textGray: '#FFFFFF',
+		textPrimary: '#FFFFFF',
+		themeSwitch: '#333652'
+	}
 };

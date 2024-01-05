@@ -1,14 +1,14 @@
 import React from 'react';
 import {Image, TouchableOpacity} from 'react-native';
 
-import {colors} from '../../theme';
+import {useTheme} from '../../theme';
 
 import {styles} from './sharedStyles';
 
-import {State, useAppDispatch, useAppSelector} from '@weather/states';
+import {State, useAppDispatch} from '@weather/states';
 
 export const ThemeButton: React.FC = () => {
-	const isDarkTheme = useAppSelector(State.selectors.selectTheme).dark;
+	const {colors, isDark} = useTheme();
 	const dispatch = useAppDispatch();
 
 	const toggleTheme = React.useCallback(() => {
@@ -21,15 +21,12 @@ export const ThemeButton: React.FC = () => {
 			onPress={toggleTheme}
 		>
 			<Image
-				source={isDarkTheme
+				source={isDark
 					? require('./res/dark.png')
 					: require('./res/light.png')
 				}
 				style={styles.image}
-				tintColor={isDarkTheme
-					? colors.bg.bgThemeSwitchDark
-					: colors.bg.bgThemeSwitchLight
-				}
+				tintColor={colors.themeSwitch}
 			/>
 		</TouchableOpacity>
 	);

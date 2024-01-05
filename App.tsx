@@ -2,9 +2,9 @@ import React from 'react';
 import {initReactI18next} from 'react-i18next';
 import {Provider} from 'react-redux';
 
-import {languages, loadSavedLang, loadSavedTheme, translations} from '@weather/general';
+import {languages, loadSavedLang, loadSavedTheme, translations, useTheme} from '@weather/general';
 import {Navigator} from '@weather/navigation';
-import {State, store, useAppDispatch} from '@weather/states';
+import {store} from '@weather/states';
 import {requestForegroundPermissionsAsync} from 'expo-location';
 import i18n from 'i18next';
 
@@ -19,11 +19,14 @@ i18n.use(initReactI18next).init({
 });
 
 function Init(): React.ReactNode {
-	const dispatch = useAppDispatch();
-	
-	loadSavedTheme().then((theme) => dispatch(State.actions.setTheme(theme)));
-	loadSavedLang().then(i18n.changeLanguage);
-	requestForegroundPermissionsAsync();
+	const {setTheme} = useTheme();
+
+	React.useEffect(() => {
+		loadSavedLang().then(i18n.changeLanguage);
+		requestForegroundPermissionsAsync();
+		loadSavedTheme().then(setTheme);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return <Navigator />;
 }

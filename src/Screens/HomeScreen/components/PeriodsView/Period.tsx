@@ -4,8 +4,7 @@ import {Pressable, Text} from 'react-native';
 import {periods} from './shared';
 import {selectedPeriod, styles} from './styles';
 
-import {capitalizeFirst, localize} from '@weather/general';
-import {State, useAppSelector} from '@weather/states';
+import {capitalizeFirst, localize, useTheme} from '@weather/general';
 
 type Props = {
 	index: number;
@@ -14,14 +13,14 @@ type Props = {
 }
 
 export const Period: React.FC<Props> = (props) => {
-	const {colors} = useAppSelector(State.selectors.selectTheme);
+	const {colors} = useTheme();
 
 	return (
 		<Pressable
 			disabled={props.isSelected}
 			style={[
 				props.isSelected ? selectedPeriod : styles.period,
-				{backgroundColor: colors.card}
+				{backgroundColor: colors.bgGreen}
 			]}
 			onPress={props.onPress}
 		>
