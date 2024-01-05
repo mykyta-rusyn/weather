@@ -12,3 +12,8 @@ Final commit:
 - Theme switching
 - Render 1, 3, 7, 14 elements
 - Translation and language switching
+
+Last commit:
+0.5 hours.
+- Add theme hook
+- Change colors
